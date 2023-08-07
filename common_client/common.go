@@ -6,7 +6,7 @@ package common_client
 import (
 	"context"
 
-	"common-protobuf/pb/common"
+	"github.com/otter-trade/common-protobuf/pb/common"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
