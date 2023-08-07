@@ -33,7 +33,7 @@ message GetUserApiKeyByStrategyIdResp {
     repeated UserAPIKey list = 1;
 }
 
-service User {
+service CommonUser {
   //-----------------------用户-----------------------
   /** 根据策略Id获取用户以及api key **/
   rpc GetUserApiKeyByStrategyId(GetUserApiKeyByStrategyIdReq) returns (GetUserApiKeyByStrategyIdResp);

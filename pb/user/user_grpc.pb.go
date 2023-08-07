@@ -18,88 +18,88 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserClient is the client API for User service.
+// CommonUserClient is the client API for CommonUser service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserClient interface {
+type CommonUserClient interface {
 	//* 根据策略Id获取用户以及api key *
 	GetUserApiKeyByStrategyId(ctx context.Context, in *GetUserApiKeyByStrategyIdReq, opts ...grpc.CallOption) (*GetUserApiKeyByStrategyIdResp, error)
 }
 
-type userClient struct {
+type commonUserClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserClient(cc grpc.ClientConnInterface) UserClient {
-	return &userClient{cc}
+func NewCommonUserClient(cc grpc.ClientConnInterface) CommonUserClient {
+	return &commonUserClient{cc}
 }
 
-func (c *userClient) GetUserApiKeyByStrategyId(ctx context.Context, in *GetUserApiKeyByStrategyIdReq, opts ...grpc.CallOption) (*GetUserApiKeyByStrategyIdResp, error) {
+func (c *commonUserClient) GetUserApiKeyByStrategyId(ctx context.Context, in *GetUserApiKeyByStrategyIdReq, opts ...grpc.CallOption) (*GetUserApiKeyByStrategyIdResp, error) {
 	out := new(GetUserApiKeyByStrategyIdResp)
-	err := c.cc.Invoke(ctx, "/pb.User/GetUserApiKeyByStrategyId", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.CommonUser/GetUserApiKeyByStrategyId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServer is the server API for User service.
-// All implementations must embed UnimplementedUserServer
+// CommonUserServer is the server API for CommonUser service.
+// All implementations must embed UnimplementedCommonUserServer
 // for forward compatibility
-type UserServer interface {
+type CommonUserServer interface {
 	//* 根据策略Id获取用户以及api key *
 	GetUserApiKeyByStrategyId(context.Context, *GetUserApiKeyByStrategyIdReq) (*GetUserApiKeyByStrategyIdResp, error)
-	mustEmbedUnimplementedUserServer()
+	mustEmbedUnimplementedCommonUserServer()
 }
 
-// UnimplementedUserServer must be embedded to have forward compatible implementations.
-type UnimplementedUserServer struct {
+// UnimplementedCommonUserServer must be embedded to have forward compatible implementations.
+type UnimplementedCommonUserServer struct {
 }
 
-func (UnimplementedUserServer) GetUserApiKeyByStrategyId(context.Context, *GetUserApiKeyByStrategyIdReq) (*GetUserApiKeyByStrategyIdResp, error) {
+func (UnimplementedCommonUserServer) GetUserApiKeyByStrategyId(context.Context, *GetUserApiKeyByStrategyIdReq) (*GetUserApiKeyByStrategyIdResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserApiKeyByStrategyId not implemented")
 }
-func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedCommonUserServer) mustEmbedUnimplementedCommonUserServer() {}
 
-// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServer will
+// UnsafeCommonUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CommonUserServer will
 // result in compilation errors.
-type UnsafeUserServer interface {
-	mustEmbedUnimplementedUserServer()
+type UnsafeCommonUserServer interface {
+	mustEmbedUnimplementedCommonUserServer()
 }
 
-func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
-	s.RegisterService(&User_ServiceDesc, srv)
+func RegisterCommonUserServer(s grpc.ServiceRegistrar, srv CommonUserServer) {
+	s.RegisterService(&CommonUser_ServiceDesc, srv)
 }
 
-func _User_GetUserApiKeyByStrategyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CommonUser_GetUserApiKeyByStrategyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserApiKeyByStrategyIdReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).GetUserApiKeyByStrategyId(ctx, in)
+		return srv.(CommonUserServer).GetUserApiKeyByStrategyId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.User/GetUserApiKeyByStrategyId",
+		FullMethod: "/pb.CommonUser/GetUserApiKeyByStrategyId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetUserApiKeyByStrategyId(ctx, req.(*GetUserApiKeyByStrategyIdReq))
+		return srv.(CommonUserServer).GetUserApiKeyByStrategyId(ctx, req.(*GetUserApiKeyByStrategyIdReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// CommonUser_ServiceDesc is the grpc.ServiceDesc for CommonUser service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.User",
-	HandlerType: (*UserServer)(nil),
+var CommonUser_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.CommonUser",
+	HandlerType: (*CommonUserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetUserApiKeyByStrategyId",
-			Handler:    _User_GetUserApiKeyByStrategyId_Handler,
+			Handler:    _CommonUser_GetUserApiKeyByStrategyId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
