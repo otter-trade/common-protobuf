@@ -1,4 +1,4 @@
-module common-protobuf
+module github.com/otter-trade/common-protobuf
 
 go 1.20
 
