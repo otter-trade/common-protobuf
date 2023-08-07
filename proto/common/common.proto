@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+//import "google/protobuf/timestamp.proto";
+//import "google/protobuf/empty.proto";
+
+package pb;
+option go_package = "./pb/common";
+
+message Empty {}
+
+message TestApiReq {
+
+}
+
+message TestApiResp {
+
+}
+
+service Common {
+  //-----------------------用户-----------------------
+  /** 根据策略Id获取用户以及api key **/
+  rpc TestApi(TestApiReq) returns (TestApiResp);
+
+}
+
