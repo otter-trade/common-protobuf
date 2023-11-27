@@ -36,7 +36,7 @@ type APIKey struct {
 	Passphrase   string `protobuf:"bytes,5,opt,name=passphrase,proto3" json:"passphrase,omitempty"`
 	SecretKey    string `protobuf:"bytes,6,opt,name=secretKey,proto3" json:"secretKey,omitempty"` //交易所secret_key
 	Ip           string `protobuf:"bytes,7,opt,name=ip,proto3" json:"ip,omitempty"`
-	StrategyId   int64  `protobuf:"varint,8,opt,name=strategyId,proto3" json:"strategyId,omitempty"`     //策略ID
+	StrategyId   string  `protobuf:"varint,8,opt,name=strategyId,proto3" json:"strategyId,omitempty"`     //策略ID
 	Status       int64  `protobuf:"varint,9,opt,name=status,proto3" json:"status,omitempty"`             //1 启用 2 关闭 3 删除
 	Comment      string `protobuf:"bytes,10,opt,name=comment,proto3" json:"comment,omitempty"`           //备注
 	CreateTime   string `protobuf:"bytes,11,opt,name=createTime,proto3" json:"createTime,omitempty"`     //createTime
@@ -125,11 +125,11 @@ func (x *APIKey) GetIp() string {
 	return ""
 }
 
-func (x *APIKey) GetStrategyId() int64 {
+func (x *APIKey) GetStrategyId() string {
 	if x != nil {
 		return x.StrategyId
 	}
-	return 0
+	return ""
 }
 
 func (x *APIKey) GetStatus() int64 {
@@ -172,7 +172,7 @@ type GetUserApiKeyByStrategyIdReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StrategyId int64 `protobuf:"varint,1,opt,name=strategyId,proto3" json:"strategyId,omitempty"`
+	StrategyId string `protobuf:"varint,1,opt,name=strategyId,proto3" json:"strategyId,omitempty"`
 }
 
 func (x *GetUserApiKeyByStrategyIdReq) Reset() {
@@ -207,11 +207,11 @@ func (*GetUserApiKeyByStrategyIdReq) Descriptor() ([]byte, []int) {
 	return file_proto_common_common_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserApiKeyByStrategyIdReq) GetStrategyId() int64 {
+func (x *GetUserApiKeyByStrategyIdReq) GetStrategyId() string {
 	if x != nil {
 		return x.StrategyId
 	}
-	return 0
+	return ""
 }
 
 type GetUserApiKeyByStrategyIdResp struct {
